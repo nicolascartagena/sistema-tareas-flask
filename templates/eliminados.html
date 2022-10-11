@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %}Eliminados{% endblock %}
+
+{% block content %}
+    <h1 class="text-center">Tareas Eliminadas</h1>
+    <div class="row">
+        {% for tarea in tareas%}
+            <div class="col">
+                <div class="card text-white bg-info mb-3">
+                    <div class="card-body">
+                        <h5 class="card-title">{{tarea.title}}</h5>
+                        <p class="card-text">{{tarea.description}}</p>
+                        <p class="card-text">Estado: 
+                            {% if tarea.state %}
+                                Completada
+                            {% else %}
+                                Incompleta
+                            {% endif %}
+                        </p>
+                    </div>
+                    <div class="card-footer">
+                        <a href="{{url_for('restaurarTarea', id=tarea.id)}}" class="btn btn-success">Restaurar</a>
+                <a href="{{url_for('borrarTarea', id=tarea.id)}}" class="btn btn-danger">Eliminar</a>
+                    </div>
+                </div>
+            </div>
+        {% endfor %}
+    </div>
+{% endblock %}
